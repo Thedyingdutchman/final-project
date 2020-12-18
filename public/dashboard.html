@@ -1,0 +1,169 @@
+<!-- This is an SEO Change -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="Personal Budget" content="About Your personal Budget">
+<title>Dashboard</title>
+<link rel="stylesheet" href="reset.css">
+<link rel="stylesheet" href="main.css">
+</head>
+<div class="menu">
+    <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="login.html">Login</a></li>
+    </ul>
+</div>
+
+<div class="container">
+<b><h1><centered>Dashboard</centered></h1></b>
+
+<figure>
+
+<!-- Pie Chart starts here -->
+
+</figure>
+<div class="text-box">
+    <h1>Pie Chart</h1>
+    <p>
+        <head>
+        <script type="text/javascript">
+        window.onload = function () {
+            var chart = new CanvasJS.Chart("chartContainer",
+            {
+                title:{
+                    text: "Your current budget"
+                },
+                legend: {
+                    maxWidth: 350,
+                    itemWidth: 120
+                },
+                data: [
+                {
+                    type: "pie",
+                    legendText: "{indexLabel}",
+                    dataPoints: [
+                        { y: 4181563, indexLabel: "Eat Out" },
+                        { y: 2175498, indexLabel: "Rent" },
+                        { y: 3125844, indexLabel: "Groceries" },
+                        { y: 1176121, indexLabel: "Gas"},
+                        { y: 1727161, indexLabel: "Utilities" },
+                        { y: 4303364, indexLabel: "Wireless"},
+                        { y: 1717786, indexLabel: "Misc"}
+                    ]
+                }
+                ]
+            });
+            chart.render();
+        }
+        </script>
+        <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+        </head>
+        <body>
+        <div id="chartContainer" style="height: 400px; width: 100%;"></div>
+    </p>
+</div>
+</div>
+</div>
+
+<!--Bar Chart starts here -->
+
+<head>
+<h1>Bar Chart</h1>
+<script src="https://cdn.anychart.com/releases/8.0.0/js/anychart-base.min.js"></script>
+</head>
+<body>
+<div id="container" style="width: 100%; height: 100%"></div>
+<script>
+    anychart.onDocumentReady(function() {
+
+    // set the data
+    var data = {
+        header: ["Title", "Budget"],
+        rows: [
+            ["Eat Out)", 1500],
+            ["Rent", 87000],
+            ["Groceries", 175000],
+            ["Gas", 10000],
+            ["Utilities", 242000],
+            ["Wireless", 25000],
+            ["Misc", 50000]
+    ]};
+
+    // create the chart
+    var chart = anychart.bar();
+
+    // add the data
+    chart.data(data);
+
+    // set the chart title
+    chart.title();
+
+    // draw
+    chart.container("container");
+    chart.draw();
+    });
+</script>
+</body>
+
+<!--Doughnut Chart starts here -->
+
+<h1>Doughnut Chart</h1>
+<canvas id="canvas" width=325 height=325></canvas>
+
+<script type="text/javascript">
+var canvas=document.getElementById("canvas");
+var ctx=canvas.getContext("2d");
+
+var colors=['royalblue','orange','blue','red','green','purple'];
+var values=[47,26,47,52,57,48];
+var labels=['Eat Out','Rent','Gas','Utilities','Wireless','Misc'];
+
+dmbChart(150,150,125,25,values,colors,labels,0);
+
+function dmbChart(cx,cy,radius,arcwidth,values,colors,labels,selectedValue){
+var tot=0;
+var accum=0;
+var PI=Math.PI;
+var PI2=PI*2;
+var offset=-PI/2;
+ctx.lineWidth=arcwidth;
+for(var i=0;i<values.length;i++){tot+=values[i];}
+for(var i=0;i<values.length;i++){
+    ctx.beginPath();
+    ctx.arc(cx,cy,radius,
+        offset+PI2*(accum/tot),
+        offset+PI2*((accum+values[i])/tot)
+    );
+    ctx.strokeStyle=colors[i];
+    ctx.stroke();
+    accum+=values[i];
+}
+var innerRadius=radius-arcwidth-3;
+ctx.beginPath();
+ctx.arc(cx,cy,innerRadius,0,PI2);
+ctx.fillStyle=colors[selectedValue];
+//ctx.fill();
+ctx.textAlign='center';
+ctx.textBaseline='bottom';
+ctx.fillStyle='white';
+ctx.font=(innerRadius)+'px verdana';
+ctx.fillText(values[selectedValue],cx,cy+innerRadius*.9);
+ctx.font=(innerRadius/4)+'px verdana';
+ctx.fillText(labels[selectedValue],cx,cy-innerRadius*.25);
+}
+</script>
+</div>
+<!-- This is an SEO Change -->
+<div class="bottom">
+
+All rights reserved &copy; Dyllon Thomas
+</div>
+</div>
+<!-- This is a Semantic HTML Change -->
+<footer>
+    <!-- This is an A11y Change -->
+<p><a href="mailto:dthoma81@uncc.edu">Email Me</a></p>    
+</footer>
+</html>
